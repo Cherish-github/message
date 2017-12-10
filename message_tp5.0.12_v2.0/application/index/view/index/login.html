@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="utf-8">
+	<title>Sign In</title>
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<style type="text/css">
+		.my_active {
+			background-color: #ececec;
+		}
+	</style>
+</head>
+<body style="padding-top: 20px;font-size: 21px;">
+	<div class="container">
+		<nav class="navbar navbar-default" style="background-color: #ccff99;" role="navigation"> 
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" style="font-weight: bold; font-size: 26px;" href="/message_tp5.0.12_v2.0/public/">Message Board</a>
+				</div>
+				
+				<div>
+					<ul class="nav nav-pills">
+						<li>
+							<a href="/message_tp5.0.12_v2.0/public/">
+								<span class="glyphicon glyphicon-home"></span>
+								Home
+							</a>
+						</li>
+						<li>
+							<a href="/message_tp5.0.12_v2.0/public/add">
+								<span class="glyphicon glyphicon-pencil"></span>
+								Write Message
+							</a>
+						</li>
+            			<li class="pull-right">
+            				<a  href="/message_tp5.0.12_v2.0/public/register"><span class="glyphicon glyphicon-user"></span>&nbsp;sign up</a>
+            			</li>  
+					</ul>
+				</div>	
+			</div>
+		</nav>
+		<div class="col-sm-6 col-sm-offset-3">
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<h3 class="panel-title">登录</h3>
+				</div>
+				<div class="panel-body">
+					<form class="form-horizontal col-sm-10 col-sm-offset-1" method="post" action="/message_tp5.0.12_v2.0/public/check">
+						<div class="form-group">
+							<label class="col-sm-3 control-label" for="username">账 号</label>
+							<div class="col-sm-6">
+								<input type="text" name="username" class="form-control" placeholder="Input username">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label" for="username">密 码</label>
+							<div class="col-sm-6">
+								<input type="password" name="password" class="form-control" placeholder="Input password">
+							</div>
+						</div>						
+						<div class="form-group">
+							<div class="col-sm-10 col-sm-offset-2">
+								<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span> 登录</button>
+								<button type="reser" class="btn btn-warning col-sm-offset-2"><span class="glyphicon glyphicon-trash"></span> 清空</button>
+							</div>
+						</div>
+						<a class="text-info col-sm-offset-2" href="/message_tp5.0.12_v2.0/public/register" style="font-size: 16px;"><span class="glyphicon glyphicon-hand-right"></span> 没有账号？还不赶紧注册一个</a>
+					</form>
+
+					
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

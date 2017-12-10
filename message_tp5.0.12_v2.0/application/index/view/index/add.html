@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="utf-8">
+	<title>Write Message</title>
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<style type="text/css">
+		.my_active {
+			background-color: #ececec;
+		}
+	</style>
+</head>
+<body style="padding-top: 20px;">
+	<div class="container">
+		<nav class="navbar navbar-default" style="background-color: #ccff99;" role="navigation"> 
+			<div class="container-fluid" style="font-size: 21px;">
+				<div class="navbar-header">
+					<a class="navbar-brand" style="font-weight: bold; font-size: 26px;" href="/message_tp5.0.12_v2.0/public/">Message Board</a>
+				</div>
+				
+				<div>
+					<ul class="nav nav-pills">
+						<li>
+							<a href="/message_tp5.0.12_v2.0/public/">
+								<span class="glyphicon glyphicon-home"></span>
+								Home
+							</a>
+						</li>
+						<li class="my_active">
+							<a>
+								<span class="glyphicon glyphicon-pencil"></span>
+								Write Message
+							</a>
+						</li>
+
+					{empty name="username"}
+						<li class="pull-right">
+							<a href="/message_tp5.0.12_v2.0/public/register"><span class="glyphicon glyphicon-user"></span>&nbsp;sign up</a>
+						</li> 
+        				<li class="pull-right">
+        					<a href="/message_tp5.0.12_v2.0/public/login"><span class="glyphicon glyphicon-log-in"></span>&nbsp;sign in</a>
+        				</li>	
+					{else/}
+						<li class="pull-right"  style="height: 50px;right: -15px;">
+							<p class="navbar-text" style="font-size: 17px;">欢迎您，{$username}&nbsp;&nbsp;<a href="/message_tp5.0.12_v2.0/public/logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;退出</a></p>				
+						</li>
+					{/empty}		
+					</ul>
+				</div>	
+			</div>
+		</nav>
+		
+	{empty name="username"}
+		<span class="text-muted col-sm-offset-3" style="font-size: 20px;">您还没有登录，无法留言，请先<a href="/message_tp5.0.12_v2.0/public/login" style="font-size: 22px;">登录！</a>
+		</span>
+		<a class="text-info" href="/message_tp5.0.12_v2.0/public/register" style="font-size: 16px;"><span class="glyphicon glyphicon-hand-right"></span> 没有账号？还不赶紧注册一个</a>
+	{else/}
+		<form class="form-horizontal" method="POST" action="/message_tp5.0.12_v2.0/public/addmessage/" >
+			<div class="form-group">
+				<label class="col-sm-2 control-label" for="title" style="font-size:20px;">标题</label>
+				<div class="col-sm-8">
+					<input class="form-control input-lg" type="text" name="title" placeholder="Input title" maxlength="30">					
+				</div>
+			</div>
+			<p class="text-danger col-sm-offset-2">标题长度不能超过30个字符！</p><br/>
+			<div class="form-group">
+				<label class="col-sm-2 control-label" for="content" style="font-size:20px;">内容</label>
+				<div class="col-sm-8">
+					<textarea class="form-control input-lg" rows="10" name="content" placeholder="Input content"></textarea>
+				</div>
+			</div>
+			<input type="hidden" name="user_id" value="{$userId}">
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-8">
+					<button class="btn btn-info" type="submit">提交留言</button>
+				</div>
+			</div>
+		</form>
+	{/empty}
+	</div>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="utf-8">
+	<title>Message Board</title>
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+	<script>
+	$(function () { 
+		$("[data-toggle='tooltip']").tooltip(); 
+	});
+	</script>
+
+	<style type="text/css">
+		.my_active {
+			background-color: #ececec;
+		}
+	</style>
+</head>
+<body style="padding-top: 20px;font-size: 21px;">
+	<div class="container"> 
+		<nav class="navbar navbar-default" style="background-color: #ccff99;" role="navigation"> 
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" style="font-weight: bold; font-size: 26px;" href="/message_tp5.0.12_v2.0/public">Message Board</a>
+				</div>
+				
+				<div>
+					<ul class="nav nav-pills">
+						<li class="my_active">
+							<a>
+								<span class="glyphicon glyphicon-home"></span>
+								Home
+							</a>
+						</li>
+						<li>
+							<a href="/message_tp5.0.12_v2.0/public/add">
+								<span class="glyphicon glyphicon-pencil"></span>
+								Write Message
+							</a>
+						</li>
+
+					{empty name="user"}
+						<li class="pull-right">
+							<a href="/message_tp5.0.12_v2.0/public/register"><span class="glyphicon glyphicon-user"></span>&nbsp;sign up</a>
+						</li> 
+        				<li class="pull-right">
+        					<a href="/message_tp5.0.12_v2.0/public/login"><span class="glyphicon glyphicon-log-in"></span>&nbsp;sign in</a>
+        				</li>	
+					{else/}
+						<li class="pull-right"  style="height: 50px;right: -15px;">
+							<p class="navbar-text" style="font-size: 17px;">欢迎您，{$user}&nbsp;&nbsp;<a href="/message_tp5.0.12_v2.0/public/logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;退出</a></p>							
+						</li>
+					{/empty}						
+					</ul>
+				</div>	
+			</div>
+		</nav>
+
+		<table class="table table-hover" style="font-size: 18px;">
+			<thead style="background-color: #6699cc;">
+			<tr>
+				<!-- <th>序号</th> -->
+				<th>
+					<form class="form-inline" method="POST" action="/message_tp5.0.12_v2.0/public/index">&nbsp;&nbsp;标题
+						<div class="form-group input-group-sm col-sm-offset-1">
+							<input type="search" class="form-control" placeholder="Input keywords to search" style="width: 200px;" name="search" />
+						</div>
+						<div class="form-group">
+							<button type="submit" class="btn btn-primary btn-sm" style="font-size: 12px;">
+								<span class="glyphicon glyphicon-search"></span>
+								Search
+							</button>
+						</div>
+					</form>		
+				</th>
+				<th><span class="glyphicon glyphicon-comment"></span>&nbsp;评论数</th>
+				<th><span class="glyphicon glyphicon-time"></span>&nbsp;留言时间</th>
+				<th><span class="glyphicon glyphicon-cog"></span>&nbsp;操作</th>
+			</tr>
+			</thead>
+			<tbody>
+			{volist name="list" id="val"}
+			<tr>
+				<!-- <td>{$val.id}</td> -->
+				<td class="col-xs-7"><a href="/message_tp5.0.12_v2.0/public/read/{$val.id}" >{$val.title}</a></td>
+				<td class="col-xs-1">{$val.count}</td>
+				<td class="col-xs-2">{$val.create_time}</td>
+				<td class="col-xs-1">
+					<a href="/message_tp5.0.12_v2.0/public/delete/{$val.id}" class="btn btn-sm btn-danger" title="删除" data-toggle="tooltip"><span class="glyphicon glyphicon-trash"></span></a>
+					<a href="/message_tp5.0.12_v2.0/public/read/{$val.id}/#comment" class="btn btn-sm btn-info" title="评论" data-toggle="tooltip"><span class="glyphicon glyphicon-comment"></span></a>
+				</td>
+			</tr>
+			{/volist}
+			</tbody>
+		</table>
+		{$list->render()}
+	</div>
+</body>
+</html>

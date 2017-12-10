@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="utf-8">
+	<title>Read Message</title>
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body style="padding-top: 20px;">
+	<div class="container">
+		<nav class="navbar navbar-default" style="background-color: #ccff99;" role="navigation"> 
+			<div class="container-fluid" style="font-size: 21px;">
+				<div class="navbar-header">
+					<a class="navbar-brand" style="font-weight: bold; font-size: 26px;" href="/message_tp5.0.12_v2.0/public">Message Board</a>
+				</div>
+				
+				<div>
+					<ul class="nav nav-pills">
+						<li>
+							<a href="/message_tp5.0.12_v2.0/public">
+								<span class="glyphicon glyphicon-home"></span>
+								Home
+							</a>
+						</li>
+						<li>
+							<a href="/message_tp5.0.12_v2.0/public/add">
+								<span class="glyphicon glyphicon-pencil"></span>
+								Write Message
+							</a>
+						</li>
+					{empty name="user"}
+						<li class="pull-right">
+							<a href="/message_tp5.0.12_v2.0/public/register"><span class="glyphicon glyphicon-user"></span>&nbsp;sign up</a>
+						</li> 
+        				<li class="pull-right">
+        					<a href="/message_tp5.0.12_v2.0/public/login"><span class="glyphicon glyphicon-log-in"></span>&nbsp;sign in</a>
+        				</li>	
+					{else/}
+						<li class="pull-right"  style="height: 50px;right: -15px;">
+							<p class="navbar-text" style="font-size: 17px;">欢迎您，{$user}&nbsp;&nbsp;<a href="/message_tp5.0.12_v2.0/public/logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;退出</a></p>							
+						</li>
+					{/empty}	 
+					</ul>
+				</div>
+		</nav>
+		
+		<!--留言和评论内容-->
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title" style="font-size: 23px;color: black;"><em>Message</em></h3><br />
+				<span style="font-size: 18px;"><span style="font-weight: bolder;color: black;font-size: 20px;">{$article->username}：</span>{$article->title}</span>
+				<small class="pull-right">{$article->create_time}</small>
+			</div>
+			<div class="panel-body">
+				{$article->content}
+			</div>
+			<div class="panel-footer">
+				<a href="#comment" style=" font-weight: bolder;"><span class="glyphicon glyphicon-comment"></span>&nbsp;Add Comment</a>
+			</div>
+		</div>	
+
+		<!-- 评论内容 -->
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<h3 class="panel-title" style="font-size: 22px;"><em>Comments</em></h3>
+			</div>	
+			<div class="panel-body">
+			{volist name="comments" id="comment"}
+				<div class="well">
+					<p>{$comment.content}</p>
+					<span class="pull-right">{$comment.id}楼</span>
+					<span style="font-weight: bolder;font-size: 16px;">{$comment.username}</span> 
+					发表于：{$comment.create_time}
+				</div>
+			{/volist}
+			</div>
+		</div>	
+
+		<!-- 发表评论 -->
+		<div class="panel panel-default">
+			<div class="panel-heading" style="background-color: #ccccff;">
+				<h3 class="panel-title" style="font-size: 22px;"><a name="comment"></a><em>Add Comment</em></h3>
+			</div>
+			<div class="panel-body">
+			{empty name="user"}
+				<span  class="text-muted" style="font-size: 18px;">您还没有登录，无法发表评论，请先<a href="/message_tp5.0.12_v2.0/public/login" style="font-size: 20px;">登录！</a>
+				</span>
+			{else/}
+				<form method="POST" action="/message_tp5.0.12_v2.0/public/addcomment/{$article.id}" class="form-horizontal">
+					<div class="form-group col-sm-8">
+						<span style="font-size: 19px;font-weight: bolder;">{$user}：</span>
+						<textarea name="content" class="form-control" rows="5"   style="font-size: 18px;" placeholder="发表评论..."></textarea> 
+						<input type="hidden" name="user_id" value="{$userId}">
+					</div>
+					<div class="form-group col-sm-12">
+						<button class="btn btn-info" type="submit">提交评论</button>
+					</div>
+				</form>
+			{/empty}
+			</div>
+		</div>
+		
+	</div>
+</body>
+</html>
