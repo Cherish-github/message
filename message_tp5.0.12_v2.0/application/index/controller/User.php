@@ -30,7 +30,7 @@ class User extends Controller
 			//验证通过，开启(tp5默认开启)session保存登录信息
 			Session::set('userId',$res['id']);
 			Session::set('username',$res['username']);
-			$this->success("登陆成功！",'/message_tp5.0.12_v2.0/public');
+			$this->success("登陆成功！",'/');
 		}
 	}
 
@@ -38,7 +38,7 @@ class User extends Controller
 	public function logout()
 	{
 		Session::clear();
-		$this->success("退出成功，欢迎再次登录!",'/message_tp5.0.12_v2.0/public/');
+		$this->success("退出成功，欢迎再次登录!",'/');
 	}
 
 	//注册页面
@@ -71,7 +71,7 @@ class User extends Controller
 				$data['password'] = md5($data['password']);
 				$result = UserModel::create($data);
 				if ($result) {
-					$this->success("注册成功！赶紧登录试试吧",'/message_tp5.0.12_v2.0/public/login');
+					$this->success("注册成功！赶紧登录试试吧",'/login');
 				} else {
 					$this->error("注册失败！");
 				}

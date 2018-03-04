@@ -10,33 +10,33 @@
 		<nav class="navbar navbar-default" style="background-color: #ccff99;" role="navigation"> 
 			<div class="container-fluid" style="font-size: 21px;">
 				<div class="navbar-header">
-					<a class="navbar-brand" style="font-weight: bold; font-size: 26px;" href="/message_tp5.0.12_v2.0/public">Message Board</a>
+					<a class="navbar-brand" style="font-weight: bold; font-size: 26px;" href="/">Message Board</a>
 				</div>
 				
 				<div>
 					<ul class="nav nav-pills">
 						<li>
-							<a href="/message_tp5.0.12_v2.0/public">
+							<a href="/">
 								<span class="glyphicon glyphicon-home"></span>
 								Home
 							</a>
 						</li>
 						<li>
-							<a href="/message_tp5.0.12_v2.0/public/add">
+							<a href="/add">
 								<span class="glyphicon glyphicon-pencil"></span>
 								Write Message
 							</a>
 						</li>
 					{empty name="user"}
 						<li class="pull-right">
-							<a href="/message_tp5.0.12_v2.0/public/register"><span class="glyphicon glyphicon-user"></span>&nbsp;sign up</a>
+							<a href="/register"><span class="glyphicon glyphicon-user"></span>&nbsp;sign up</a>
 						</li> 
         				<li class="pull-right">
-        					<a href="/message_tp5.0.12_v2.0/public/login"><span class="glyphicon glyphicon-log-in"></span>&nbsp;sign in</a>
+        					<a href="/login"><span class="glyphicon glyphicon-log-in"></span>&nbsp;sign in</a>
         				</li>	
 					{else/}
 						<li class="pull-right"  style="height: 50px;right: -15px;">
-							<p class="navbar-text" style="font-size: 17px;">欢迎您，{$user}&nbsp;&nbsp;<a href="/message_tp5.0.12_v2.0/public/logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;退出</a></p>							
+							<p class="navbar-text" style="font-size: 17px;">欢迎您，{$user}&nbsp;&nbsp;<a href="/logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;退出</a></p>							
 						</li>
 					{/empty}	 
 					</ul>
@@ -82,10 +82,10 @@
 			</div>
 			<div class="panel-body">
 			{empty name="user"}
-				<span  class="text-muted" style="font-size: 18px;">您还没有登录，无法发表评论，请先<a href="/message_tp5.0.12_v2.0/public/login" style="font-size: 20px;">登录！</a>
+				<span  class="text-muted" style="font-size: 18px;">您还没有登录，无法发表评论，请先<a href="/login" style="font-size: 20px;">登录！</a>
 				</span>
 			{else/}
-				<form method="POST" action="/message_tp5.0.12_v2.0/public/addcomment/{$article.id}" class="form-horizontal">
+				<form method="POST" action="/addcomment/{$article.id}" class="form-horizontal">
 					<div class="form-group col-sm-8">
 						<span style="font-size: 19px;font-weight: bolder;">{$user}：</span>
 						<textarea name="content" class="form-control" rows="5"   style="font-size: 18px;" placeholder="发表评论..."></textarea> 

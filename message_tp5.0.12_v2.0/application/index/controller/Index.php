@@ -78,7 +78,7 @@ class Index extends Controller
         	if (is_null($id)) {
         		$this->error( "操作无效！");
         	} elseif ($res = Article::destroy($id)) {
-        		$this->success('删除留言成功！','/message_tp5.0.12_v2.0/public');
+        		$this->success('删除留言成功！','/');
         	} else {
         		$this->error('删除留言失败！');
         	}

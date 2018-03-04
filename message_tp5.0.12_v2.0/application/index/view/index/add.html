@@ -16,13 +16,13 @@
 		<nav class="navbar navbar-default" style="background-color: #ccff99;" role="navigation"> 
 			<div class="container-fluid" style="font-size: 21px;">
 				<div class="navbar-header">
-					<a class="navbar-brand" style="font-weight: bold; font-size: 26px;" href="/message_tp5.0.12_v2.0/public/">Message Board</a>
+					<a class="navbar-brand" style="font-weight: bold; font-size: 26px;" href="/">Message Board</a>
 				</div>
 				
 				<div>
 					<ul class="nav nav-pills">
 						<li>
-							<a href="/message_tp5.0.12_v2.0/public/">
+							<a href="/">
 								<span class="glyphicon glyphicon-home"></span>
 								Home
 							</a>
@@ -36,14 +36,14 @@
 
 					{empty name="username"}
 						<li class="pull-right">
-							<a href="/message_tp5.0.12_v2.0/public/register"><span class="glyphicon glyphicon-user"></span>&nbsp;sign up</a>
+							<a href="/register"><span class="glyphicon glyphicon-user"></span>&nbsp;sign up</a>
 						</li> 
         				<li class="pull-right">
-        					<a href="/message_tp5.0.12_v2.0/public/login"><span class="glyphicon glyphicon-log-in"></span>&nbsp;sign in</a>
+        					<a href="/login"><span class="glyphicon glyphicon-log-in"></span>&nbsp;sign in</a>
         				</li>	
 					{else/}
 						<li class="pull-right"  style="height: 50px;right: -15px;">
-							<p class="navbar-text" style="font-size: 17px;">欢迎您，{$username}&nbsp;&nbsp;<a href="/message_tp5.0.12_v2.0/public/logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;退出</a></p>				
+							<p class="navbar-text" style="font-size: 17px;">欢迎您，{$username}&nbsp;&nbsp;<a href="/logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;退出</a></p>				
 						</li>
 					{/empty}		
 					</ul>
@@ -52,11 +52,11 @@
 		</nav>
 		
 	{empty name="username"}
-		<span class="text-muted col-sm-offset-3" style="font-size: 20px;">您还没有登录，无法留言，请先<a href="/message_tp5.0.12_v2.0/public/login" style="font-size: 22px;">登录！</a>
+		<span class="text-muted col-sm-offset-3" style="font-size: 20px;">您还没有登录，无法留言，请先<a href="/login" style="font-size: 22px;">登录！</a>
 		</span>
-		<a class="text-info" href="/message_tp5.0.12_v2.0/public/register" style="font-size: 16px;"><span class="glyphicon glyphicon-hand-right"></span> 没有账号？还不赶紧注册一个</a>
+		<a class="text-info" href="/register" style="font-size: 16px;"><span class="glyphicon glyphicon-hand-right"></span> 没有账号？还不赶紧注册一个</a>
 	{else/}
-		<form class="form-horizontal" method="POST" action="/message_tp5.0.12_v2.0/public/addmessage/" >
+		<form class="form-horizontal" method="POST" action="/addmessage/" >
 			<div class="form-group">
 				<label class="col-sm-2 control-label" for="title" style="font-size:20px;">标题</label>
 				<div class="col-sm-8">
